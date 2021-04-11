@@ -1,0 +1,34 @@
+<form id=videos method=post>
+    <fieldset required>
+        <legend>What format would you like to download?</legend>
+        <input type=radio id=lqytmp3 name=format value=lqytmp3 @lqytmp3 required>
+            <label for=lqytmp3 required>Low Quality MP3 YouTube</label><br>
+        <input type=radio id=hqytmp3 name=format value=hqytmp3 @hqytmp3 required>
+            <label for=hqytmp3 required>High Quality MP3 YouTube</label><br>
+        <input type=radio id=hqyt name=format value=hqyt @hqyt required>
+            <label for=hqyt required>High Quality Video YouTube</label><br>
+    </fieldset>
+    <br>
+    <fieldset id=urls>
+        <legend>Video URLs to Download</legend>
+        <label data-root>
+            Link:&nbsp;
+            <input type=url name=urls>
+            <button data-action=remove>&nbsp;X&nbsp;</button>
+            <span data-video-name style="white-space: nowrap;"></span>
+            <br>
+        </label>
+    </fieldset>
+    <br>
+    <br><input id=submit type=submit value="Start Download">
+</form>
+
+<p id=message>Downloading videos!</p>
+
+<form id=previousVideos>
+    <h2>Previously Downloaded URLs</h2>
+    @for url in data.urls
+    <input name=urls value="@url" readonly><br><br>
+    @end
+    <button>Restore Previous Urls</button>
+</form>

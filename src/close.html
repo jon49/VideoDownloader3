@@ -1,0 +1,9 @@
+<p id=closing>Closing...</p>
+<script>
+    fetch("/close", { method: "POST" })
+    function closed() {
+        fetch("/")
+        .catch(() => document.getElementById("closing").innerText = "Closed!")
+    }
+    setTimeout(closed, 1e3)
+</script>

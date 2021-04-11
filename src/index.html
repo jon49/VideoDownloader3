@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @css 'static/css/site.css'
+    <title>@title</title>
+</head>
+<body style="max-width: 800px; margin: auto;">
+
+@if first_time
+<a href="https://www.microsoft.com/en-US/download/confirmation.aspx?id=5555">Please install this library from Microsoft.</a>
+<p>Once that is installed <a href="/">click here to get started!</a></p>
+@end
+
+@if !first_time
+<h1>Download Videos</h1>
+<form action="/close">
+    <button
+        hf-ignore
+        onclick="return confirm('Are you sure you would like to close this page? If you are downloading right now, those downloads will not finish.')"
+        >Close</button>
+</form>
+<p id=message></p>
+
+<form id=videos method=post>
+    <fieldset required>
+        <legend>What format would you like to download?</legend>
+        <input type=radio id=lqytmp3 name=format value=lqytmp3 @lqytmp3 required>
+            <label for=lqytmp3 required>Low Quality MP3 YouTube</label><br>
+        <input type=radio id=hqytmp3 name=format value=hqytmp3 @hqytmp3 required>
+            <label for=hqytmp3 required>High Quality MP3 YouTube</label><br>
+        <input type=radio id=hqyt name=format value=hqyt @hqyt required>
+            <label for=hqyt required>High Quality Video YouTube</label><br>
+    </fieldset>
+    <br>
+    <fieldset id=urls>
+        <legend>Video URLs to Download</legend>
+        <label data-root>
+            Link:&nbsp;
+            <input type=url name=urls>
+            <button data-action=remove hf-ignore>&nbsp;X&nbsp;</button>
+            <span data-video-name style="white-space: nowrap;"></span>
+            <br>
+        </label>
+        @for url in urls
+        <label data-root>
+            Link:&nbsp;
+            <input type=url name=urls value="@url">
+            <button data-action=remove hf-ignore>&nbsp;X&nbsp;</button>
+            <span data-video-name style="white-space: nowrap;"></span>
+            <br>
+        </label>
+        @end
+    </fieldset>
+    <br>
+    <br><input id=submit type=submit value="Start Download">
+</form>
+<br>
+<hr>
+<form id=previousVideos></form>
+
+<script src="static/js/index.js"></script>
+<script src="static/js/htmf.js"></script>
+
+@end
+
+</body>
+</html>
